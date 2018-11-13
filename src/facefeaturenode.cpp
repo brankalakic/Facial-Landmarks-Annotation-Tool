@@ -45,6 +45,14 @@ ft::FaceFeatureNode::FaceFeatureNode(int iID, FaceWidget *pFaceWidget)
 	m_iID = iID;
 }
 
+double ft::FaceFeatureNode::getFeatureRadius() const
+{
+	double scale;
+	scale = m_pFaceWidget->getScaleFactor();
+
+	return RADIUS/scale;
+}
+
 // +-----------------------------------------------------------
 void ft::FaceFeatureNode::addEdge(FaceFeatureEdge *pEdge)
 {
@@ -81,15 +89,16 @@ ft::FaceFeatureEdge *ft::FaceFeatureNode::getEdgeTo(const FaceFeatureNode *pNode
 // +-----------------------------------------------------------
 QRectF ft::FaceFeatureNode::boundingRect() const
 {
+	double r = getFeatureRadius();
 	if(m_pFaceWidget->displayFeatureIDs())
 	{
 		QString sID = QString::number(m_iID);
 		int iHeight = m_pFaceWidget->fontMetrics().height();
 		int iWidth = m_pFaceWidget->fontMetrics().width(sID);
-		return QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), 2 * RADIUS + iWidth, 2 * RADIUS + iHeight);
+		return QRectF(-(iWidth + r), -(iHeight + r), 2 * r + iWidth, 2 * r + iHeight);
 	}
 	else
-		return QRectF(-RADIUS, -RADIUS, 2 * RADIUS, 2 * RADIUS);
+		return QRectF(-r, -r, 2 * r, 2 * r);
 }
 
 // +-----------------------------------------------------------
@@ -115,12 +124,13 @@ void ft::FaceFeatureNode::paint(QPainter *pPainter, const QStyleOptionGraphicsIt
 	if(m_pFaceWidget->displayFeatureIDs())
 	{
 		QString sID = QString::number(m_iID);
+		double r = getFeatureRadius();
 		int iHeight = m_pFaceWidget->fontMetrics().height();
 		int iWidth = m_pFaceWidget->fontMetrics().width(sID);
-		oBounds = QRectF(-(iWidth + RADIUS), -(iHeight + RADIUS), iWidth, iHeight);
+		oBounds = QRectF(-(iWidth + r), -(iHeight + r), iWidth, iHeight);
 		pPainter->drawText(oBounds, sID);
 
-		oBounds = QRectF(-RADIUS, -RADIUS, 2 * RADIUS, 2 * RADIUS);
+		oBounds = QRectF(-r, -r, 2 * r, 2 * r);
 	}
 	else
 		oBounds = boundingRect();

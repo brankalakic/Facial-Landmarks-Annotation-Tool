@@ -73,6 +73,11 @@ namespace ft
 		 */
 		QRectF boundingRect() const Q_DECL_OVERRIDE;
 
+		/*
+		* Gets feature radius adjusted for the zooming factor
+		*/
+		double getFeatureRadius() const;
+
 		/**
 		 * Gets the identifier of the feature node.
 		 */
