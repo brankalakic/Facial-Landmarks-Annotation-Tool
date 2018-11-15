@@ -126,13 +126,13 @@ namespace ft
 		 * @param x Float with the x coordinate for the face features.
 		 * @param y Float with the y coordinate for the face features.
 		 */
-		void addFeature(int iID, float x = 0.0f, float y = 0.0f);
+		void addFeature(int imageID, int iID, float x = 0.0f, float y = 0.0f);
 
 		/**
 		 * Removes the feature of given index in all face images.
 		 * @param iIndex Index of the feature to remove.
 		 */
-		void removeFeature(const int iIndex);
+		void removeFeature(int imageID, const int iIndex);
 
 		/**
 		 * Connects the two given features in the face dataset.
@@ -154,6 +154,8 @@ namespace ft
 		 * @return Vector of FaceFeature instances with the face features in the image.
 		 */
 		std::vector<FaceFeature*> getFeatures(const int iIndex);
+
+		void clearFeatures(const int iIndex);
 
 		/**
 		 * Queries the number of facial features in the dataset (applicable to all images).

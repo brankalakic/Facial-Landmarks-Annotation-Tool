@@ -232,23 +232,22 @@ void ft::FaceDataset::setNumFeatures(int iNumFeats)
 }
 
 // +-----------------------------------------------------------
-void ft::FaceDataset::addFeature(int iID, float x, float y)
+void ft::FaceDataset::addFeature(int imageID, int iID, float x, float y)
 {
-	FaceFeature *pFeat;
-	foreach(FaceImage *pSample, m_vSamples)
-		pFeat = pSample->addFeature(iID, x, y);
-	m_iNumFeatures++;
+	if ( iID < 0 )
+	{
+		return ;
+	}
+	m_vSamples[imageID]->addFeature(iID, x, y);
 }
 
 // +-----------------------------------------------------------
-bool ft::FaceDataset::removeFeature(const int iIndex)
+bool ft::FaceDataset::removeFeature(int imageID, const int iIndex)
 {
-	if(iIndex < 0 || iIndex >= m_iNumFeatures)
+	if(iIndex < 0 || m_vSamples[imageID]->getFeatures().size() <= iIndex)
 		return false;
 
-	foreach(FaceImage *pSample, m_vSamples)
-		pSample->removeFeature(iIndex);
-	m_iNumFeatures--;
+	m_vSamples[imageID]->removeFeature(iIndex);
 
 	return true;
 }
@@ -260,6 +259,13 @@ bool ft::FaceDataset::connectFeatures(int iIDSource, int iIDTarget)
 		pSample->connectFeatures(iIDSource, iIDTarget);
 
 	return true;
+}
+
+
+// +-----------------------------------------------------------
+void ft::FaceDataset::clearFeatures(const int iIndex)
+{
+	m_vSamples[iIndex]->clear();
 }
 
 // +-----------------------------------------------------------

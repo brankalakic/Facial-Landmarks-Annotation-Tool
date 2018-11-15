@@ -177,7 +177,7 @@ namespace ft
 		/**
 		 * Removes the selected features and all their connections.
 		 */
-		void removeSelectedFeatures();
+		int removeSelectedFeatures();
 
 		/**
 		 * Connects the selected features among themselves.

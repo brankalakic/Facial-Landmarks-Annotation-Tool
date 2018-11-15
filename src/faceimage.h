@@ -132,7 +132,7 @@ namespace ft
 		 */
 		QPixmap pixMap() const;
 
-	protected:
+
 
 		/**
 		 * Clears the internal data (like face features).

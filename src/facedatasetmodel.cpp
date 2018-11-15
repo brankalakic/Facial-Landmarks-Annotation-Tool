@@ -218,15 +218,15 @@ bool ft::FaceDatasetModel::removeImages(const QList<int> &lImageIndexes)
 }
 
 // +-----------------------------------------------------------
-void ft::FaceDatasetModel::addFeature(int iID, float x, float y)
+void ft::FaceDatasetModel::addFeature(int imageID, int iID, float x, float y)
 {
-	m_pFaceDataset->addFeature(iID, x, y);
+	m_pFaceDataset->addFeature(imageID, iID, x, y);
 }
 
 // +-----------------------------------------------------------
-void ft::FaceDatasetModel::removeFeature(const int iIndex)
+void ft::FaceDatasetModel::removeFeature(int imageID, const int iIndex)
 {
-	m_pFaceDataset->removeFeature(iIndex);
+	m_pFaceDataset->removeFeature(imageID, iIndex);
 }
 
 // +-----------------------------------------------------------
@@ -240,6 +240,14 @@ void ft::FaceDatasetModel::disconnectFeatures(int iIDSource, int iIDTarget)
 {
 	m_pFaceDataset->disconnectFeatures(iIDSource, iIDTarget);
 }
+
+// +-----------------------------------------------------------
+void ft::FaceDatasetModel::clearFeatures(const int iIndex)
+{
+	return m_pFaceDataset->clearFeatures(iIndex);
+}
+
+
 
 // +-----------------------------------------------------------
 std::vector<ft::FaceFeature*> ft::FaceDatasetModel::getFeatures(const int iIndex)

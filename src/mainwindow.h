@@ -30,6 +30,8 @@ namespace Ui {
     class MainWindow;
 }
 
+
+
 namespace ft
 {
     /**
@@ -44,7 +46,8 @@ namespace ft
          * Class constructor.
          * @param pParent QWidget with the window parent.
          */
-        explicit MainWindow(QWidget *pParent = 0);
+		explicit MainWindow(QWidget *pParent = 0);
+		
 
         /**
          * Class destructor.

@@ -378,7 +378,7 @@ void ft::MainWindow::onFitFinished(int iExitCode, QProcess::ExitStatus eExitStat
 
 	// Get the selected face annotation dataset
 	ChildWindow *pChild = (ChildWindow*)ui->tabWidget->currentWidget();
-	if (!pChild) // Sanity check
+	if (!pChild) // Sanity check+
 		return;
 
 	// Reposition the features according to the face-fit results

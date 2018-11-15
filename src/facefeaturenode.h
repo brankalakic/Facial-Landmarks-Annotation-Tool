@@ -94,6 +94,9 @@ namespace ft
 		/** Constant with the radius of the node drawn, in pixels. */
 		const static int RADIUS;
 
+		/** Font size for labels **/
+		const static int POINT_SIZE;
+
 	protected:
 
 		/**

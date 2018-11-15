@@ -79,7 +79,7 @@ bool ft::FaceImage::loadFromXML(const QDomElement &oElement, QString &sMsgError,
 	// Read the face features
 	// Sample images
 	QDomElement oFeatures = oElement.firstChildElement("Features");
-	if(oFeatures.isNull() || oFeatures.childNodes().count() != iNumExpectedFeatures)
+	if(oFeatures.isNull()) // || oFeatures.childNodes().count() != iNumExpectedFeatures)
 	{
 		sMsgError = QString(QApplication::translate("FaceImage", "the node '%1' does not exist or it contains less children nodes than expected").arg("Features"));
 		return false;

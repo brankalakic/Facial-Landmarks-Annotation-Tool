@@ -119,7 +119,7 @@ namespace ft
 		 * @param x Float with the x coordinate for the face features.
 		 * @param y Float with the y coordinate for the face features.
 		 */
-		void addFeature(int iID, float x = 0.0f, float y = 0.0f);
+		void addFeature(int imageID, int iID, float x = 0.0f, float y = 0.0f);
 
 		/**
 		 * Removes an existing feature from the face dataset. The feature is removed from all
@@ -127,7 +127,7 @@ namespace ft
 		 * @param iIndex Integer with the index of the feature to remove.
 		 * @return Boolean indicating if the feature was successfully removed (true) or not (false).
 		 */
-		bool removeFeature(const int iIndex);
+		bool removeFeature(int imageID, const int iIndex);
 
 		/**
 		* Connects the two given features.
@@ -152,6 +152,8 @@ namespace ft
 		 * an empty vector if the given index is invalid.
 		 */
 		std::vector<FaceFeature*> getImageFeatures(const int iIndex);
+
+		void clearFeatures(const int iIndex);
 
 	private:
 

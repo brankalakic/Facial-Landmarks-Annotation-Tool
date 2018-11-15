@@ -28,6 +28,7 @@
 #include <QDebug>
 
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -202,7 +203,7 @@ void ft::ChildWindow::onCurrentChanged(const QModelIndex &oCurrent, const QModel
 void ft::ChildWindow::refreshFeaturesInWidget()
 {
 	vector<FaceFeature*> vFeats = m_pFaceDatasetModel->getFeatures(m_iCurrentImage);
-	QList<FaceFeatureNode*> lsNodes = m_pFaceWidget->getFaceFeatures(m_pFaceDatasetModel->numFeatures()); // This call automatically guarantees that there are "m_pFaceDatasetModel->numFeatures()" features in the editor
+	QList<FaceFeatureNode*> lsNodes = m_pFaceWidget->getFaceFeatures(vFeats.size()); // This call automatically guarantees that there are "m_pFaceDatasetModel->numFeatures()" features in the editor
 	for(int i = 0; i < (int) vFeats.size(); i++)
 	{
 		lsNodes[i]->setData(0, true); // Indication to avoid emitting position change event
@@ -308,18 +309,19 @@ void ft::ChildWindow::setContextMenu(QMenu *pMenu)
 void ft::ChildWindow::addFeature(const QPoint &oPos)
 {
 	FaceFeatureNode *pNode = m_pFaceWidget->addFaceFeature(oPos, true);
-	m_pFaceDatasetModel->addFeature(pNode->getID(), pNode->x(), pNode->y());
+	m_pFaceDatasetModel->addFeature(m_iCurrentImage, pNode->getID(), pNode->x(), pNode->y());
 	onDataChanged();
 }
 
 // +-----------------------------------------------------------
-void ft::ChildWindow::removeSelectedFeatures()
+int ft::ChildWindow::removeSelectedFeatures()
 {
 	bool bUpdated = false;
 	QList<FaceFeatureNode*> lsFeats = m_pFaceWidget->getSelectedFeatures();
+
 	foreach(FaceFeatureNode *pNode, lsFeats)
-	{
-		m_pFaceDatasetModel->removeFeature(pNode->getID());
+	{	
+		m_pFaceDatasetModel->removeFeature(m_iCurrentImage, pNode->getID());
 		m_pFaceWidget->removeFaceFeature(pNode);
 		bUpdated = true;
 	}
@@ -328,6 +330,8 @@ void ft::ChildWindow::removeSelectedFeatures()
 		updateFeaturesInDataset();
 		onDataChanged();
 	}
+
+	return lsFeats.size();
 }
 
 // +-----------------------------------------------------------
@@ -375,22 +379,10 @@ bool ft::ChildWindow::positionFeatures(std::vector<QPoint> vPoints)
 {
 	QList<FaceFeatureNode *> lFeats = m_pFaceWidget->getFaceFeatures(vPoints.size()); // this call automatically adds or removes features to match vPoints.size()
 	
-	// Adjust the dataset so it has the same amount of features as the widget
-	vector<FaceFeature*> vFeats = m_pFaceDatasetModel->getFeatures(m_iCurrentImage);
-	int iDiff = lFeats.size() - vFeats.size();
+	m_pFaceDatasetModel->clearFeatures(m_iCurrentImage);
 
-	// If the widget has more features than the dataset, add the difference
-	if (iDiff > 0)
-	{
-		for (int i = 0; i < iDiff; i++)
-			m_pFaceDatasetModel->addFeature(lFeats.size() + i - 1, 0, 0);
-	}
-
-	// Else, if the widget has less features than the dataset, remove the difference
-	else if (iDiff < 0)
-	{
-		for (int i = 0; i < abs(iDiff); i++)
-			m_pFaceDatasetModel->removeFeature(lFeats.size() - i - 1);
+	for (int i = 0; i < vPoints.size(); i++) {
+		m_pFaceDatasetModel->addFeature(m_iCurrentImage, i, vPoints[i].x(), vPoints[i].y());
 	}
 
 	// Move the features
