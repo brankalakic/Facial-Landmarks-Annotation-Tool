@@ -4,13 +4,13 @@ This fork integrates libfacedetection landmark detection (https://github.com/Shi
 
 # Dependencies
 
-You need to install Qt to make the tool work on your machine. You will have to set so the Qt bin folder in your environment variables or copy the needed dlls into the folder with the tool executable.
+The tool depends on Qt and the libfacedetect library that is used to initialize the annotations depends on Opencv 3.4.3. You should not have to install any of these because the precompiled libraries have been added to the folders of the flat.exe and libfacelandmark.exe respectively.
 
 # Using the prebuilt version of the tool
 
-Once you install Qt you should be able to run the prebuilt flat.exe in Release-prebuilt folder. Once you have the tool running, you can use libfacedetection facial landmarks detection for initial estimate of the landmark locations. Just go to Tools in the menu of the Facial Annotation Tool and add the path to libfacelandmark (it is in fit-face-exe/libfacelandmark). 
+You should be able to run the prebuilt flat.exe in Release-prebuilt folder by clicking on it or calling it from the command line. Once you have the tool running, you can use libfacedetection facial landmarks detection for initial estimate of the landmark locations. Just go to Tools in the menu of the Facial Annotation Tool and add the path to libfacelandmark (it is in fit-face-exe/libfacelandmark). 
 
-In some cases, this does not work and you will need to build the tool yourself. You can find more information on how to do that in the next section.
+You also have the option of install Qt and building the tool from scratch. This is described in the next section.
 
 # FLAT - Facial Landmarks Annotation Tool
 
