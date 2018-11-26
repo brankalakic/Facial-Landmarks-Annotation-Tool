@@ -2,9 +2,15 @@
 
 This fork integrates libfacedetection landmark detection (https://github.com/ShiqiYu/libfacedetection) into the tool. The binary is provided by the author under MIT license.
 
-# Quickest Way to Use the Tool
+# Dependencies
 
-The fork provides a prebuilt flat.exe which you just need to run. It needs Qt to run. Once you have the tool running, you can use libfacedetection facial landmarks detection for initial estimate of the landmark locations. Just go to Tools in the menu of the Facial Annotation Tool and add the path to libfacelandmark (it is in fit-face-exe/libfacelandmark). 
+You need to install Qt to make the tool work on your machine. You will have to set so the Qt bin folder in your environment variables or copy the needed dlls into the folder with the tool executable.
+
+# Using the prebuilt version of the tool
+
+Once you install Qt you should be able to run the prebuilt flat.exe in Release-prebuilt folder. Once you have the tool running, you can use libfacedetection facial landmarks detection for initial estimate of the landmark locations. Just go to Tools in the menu of the Facial Annotation Tool and add the path to libfacelandmark (it is in fit-face-exe/libfacelandmark). 
+
+In some cases, this does not work and you will need to build the tool yourself. You can find more information on how to do that in the next section.
 
 # FLAT - Facial Landmarks Annotation Tool
 
@@ -31,7 +37,7 @@ libfacelandmark (it is in fit-face-exe/libfacelandmark).
 1. Use CMake to configure and generate the environment. I suggest using the folder `build`, since it is the one ignored by gitignore.
 2. In Windows, open the Visual Studio solution and build with the desired build type (*debug*, *release*, etc).
 3. In Linux, use type `make` to let the Makefile produce the binary in the build type configured by CMake.
-4. The code produces only a single executable named `flat(.exe)`, that depends only on Qt. If you want to use the "Fit 
+4. The code produces only a single executable named `flat(.exe)`, that depends only on Qt. 
 
 ## Credits
 
