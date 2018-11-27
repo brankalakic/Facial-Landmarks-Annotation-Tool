@@ -30,10 +30,11 @@ ft::FaceFitConfig::FaceFitConfig(QWidget *pParent) :
 	ui(new Ui::FaceFitConfig)
 {
     ui->setupUi(this);
-	setFixedSize(size());
+	adjustSize();
 	connect(ui->pathButton, SIGNAL(clicked()), this, SLOT(on_actionSelectPath_triggered()));
 	connect(ui->pathEdit, SIGNAL(textChanged(QString)), this, SLOT(onPathChanged(QString)));
 	connect(ui->buttonBox, SIGNAL(helpRequested()), this, SLOT(onShowHelp()));
+	ui->pathEdit->setText("..\\face-fit-exe\\libfacelandmark.exe");
 	onPathChanged(ui->pathEdit->text());
 }
 
