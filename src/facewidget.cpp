@@ -364,7 +364,7 @@ QList<ft::FaceFeatureEdge*> ft::FaceWidget::getSelectedConnections() const
 // +-----------------------------------------------------------
 ft::FaceFeatureNode* ft::FaceWidget::addFaceFeature(const QPoint &oPos, bool bGlobal)
 {
-	int iID = m_lFaceFeatures.size();
+	int iID = m_lFaceFeatures.size() + 1;
 	FaceFeatureNode *pNode = new FaceFeatureNode(iID, this);
 	m_pScene->addItem(pNode);
 	m_lFaceFeatures.append(pNode);
