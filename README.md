@@ -8,7 +8,7 @@ The tool depends on Qt and the libfacedetect library that is used to initialize 
 
 # Using the prebuilt version of the tool
 
-You should be able to run the prebuilt flat.exe in Release-prebuilt folder by clicking on it or calling it from the command line. Once you have the tool running, you can use libfacedetection facial landmarks detection for initial estimate of the landmark locations. Just go to Tools in the menu of the Facial Annotation Tool and add the path to libfacelandmark (it is in fit-face-exe/libfacelandmark). 
+You should be able to run the prebuilt flat.exe in Release-prebuilt folder by clicking on it or calling it from the command line. Once you have the tool running, you can use libfacedetection facial landmarks detection for initial estimate of the landmark locations. Just go to Tools in the menu of the Facial Annotation Tool and add the path to libfacelandmark (it is in fit-face-exe/libfacelandmark) first. More specifically, go to Tools->libfacedetection landmarks->Configure and choose YOUR_PATH/Facial-Landmarks-Annotation-Tool/fit-face-exe/libfacelandmark. You need to do this at most once with each start of the tool. After that for each image, go to Tools->libfacedetection landmarks->Fit Landmarks.
 
 You also have the option of install Qt and building the tool from scratch. This is described in the next section.
 
