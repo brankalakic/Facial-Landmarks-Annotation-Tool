@@ -224,6 +224,23 @@ void ft::ChildWindow::updateFeaturesInDataset()
 {
 	QList<FaceFeatureNode*> lsNodes = m_pFaceWidget->getFaceFeatures();
 	vector<FaceFeature*> vFeats = m_pFaceDatasetModel->getFeatures(m_iCurrentImage);
+	vector<int> x;
+	vector<int> y;
+
+	for (int i = 0; i < lsNodes.size(); i++) {
+		int j;
+		for (j = 0; j < vFeats.size(); j++) {
+			if (vFeats[j]->getID() == lsNodes[i]->getID()) {
+				x.push_back(vFeats[j]->x());
+				y.push_back(vFeats[j]->y());
+				break;
+			}
+		}
+		if (j == vFeats.size()) {
+			x.push_back(0);
+			y.push_back(0);
+		}
+	}
 
 	FaceFeatureNode* pNode;
 	for(int i = 0; i < (int) vFeats.size(); i++)
@@ -240,14 +257,14 @@ void ft::ChildWindow::updateFeaturesInDataset()
 			vFeats[i]->setX(pNode->x());
 		}
 		else {
-			pNode->setX(vFeats[i]->x());
+			pNode->setX(x[i]);
 		}
 
 		if (pNode->y() > 0 && pNode->y() < m_pFaceWidget->getSceneHeight()) {
 			vFeats[i]->setY(pNode->y());
 		}
 		else {
-			pNode->setY(vFeats[i]->y());
+			pNode->setY(y[i]);
 		}
 	}
 }
