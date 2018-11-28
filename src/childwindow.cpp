@@ -235,8 +235,20 @@ void ft::ChildWindow::updateFeaturesInDataset()
 		}
 		pNode = lsNodes.at(i);
 		vFeats[i]->setID(pNode->getID());
-		vFeats[i]->setX(pNode->x());
-		vFeats[i]->setY(pNode->y());
+
+		if (pNode->x() > 0) {
+			vFeats[i]->setX(pNode->x());
+		}
+		else {
+			pNode->setX(vFeats[i]->x());
+		}
+
+		if (pNode->y() > 0) {
+			vFeats[i]->setY(pNode->y());
+		}
+		else {
+			pNode->setY(vFeats[i]->y());
+		}
 	}
 }
 
