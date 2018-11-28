@@ -60,6 +60,10 @@ namespace ft
 		 */
 		virtual ~FaceWidget();
 
+		int getSceneWidth();
+
+		int getSceneHeight();
+
 		/**
 		 * Updates the pixmap displayed at the central area.
 		 * @param oPixmap Reference for a QPixmap with the new pixmap to display.

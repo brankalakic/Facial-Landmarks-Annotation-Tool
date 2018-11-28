@@ -236,14 +236,14 @@ void ft::ChildWindow::updateFeaturesInDataset()
 		pNode = lsNodes.at(i);
 		vFeats[i]->setID(pNode->getID());
 
-		if (pNode->x() > 0) {
+		if (pNode->x() > 0 && pNode->x() < m_pFaceWidget->getSceneWidth()) {
 			vFeats[i]->setX(pNode->x());
 		}
 		else {
 			pNode->setX(vFeats[i]->x());
 		}
 
-		if (pNode->y() > 0) {
+		if (pNode->y() > 0 && pNode->y() < m_pFaceWidget->getSceneHeight()) {
 			vFeats[i]->setY(pNode->y());
 		}
 		else {

@@ -183,6 +183,14 @@ void ft::FaceWidget::mousePressEvent(QMouseEvent* pEvent)
 		QGraphicsView::mousePressEvent((QMouseEvent*) pEvent);
 }
 
+int ft::FaceWidget::getSceneWidth() {
+	return m_pScene->width();
+}
+
+int ft::FaceWidget::getSceneHeight() {
+	return m_pScene->height();
+}
+
 // +-----------------------------------------------------------
 void ft::FaceWidget::mouseReleaseEvent(QMouseEvent *pEvent)
 {
