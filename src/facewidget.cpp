@@ -389,7 +389,7 @@ void ft::FaceWidget::removeFaceFeature(FaceFeatureNode* pNode)
 	delete pNode;
 
 	// And adjust the IDs of the remaining features
-	int iID = 0;
+	int iID = 1;
 	foreach(FaceFeatureNode *pNode, m_lFaceFeatures)
 		pNode->setID(iID++);
 }
